@@ -5,7 +5,6 @@ const Context = React.createContext<MyFormikReturnType<any>>({} as any)
 
 export const useMyFormikContext = () => React.useContext(Context)
 
-
 // Render Props
 type MyFormikRenderPropsType<DataType> = {
   children: (form: MyFormikReturnType<DataType>) => React.ReactNode

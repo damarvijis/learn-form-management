@@ -1,2 +1,5 @@
 export * from "./hooks"
 export * from "../my-formik/components/MyFormik"
+export * from "./components/Form"
+export * from "../my-formik/components/Field"
+export * from "../my-formik/components/ErrorMessage"

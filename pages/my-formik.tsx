@@ -50,8 +50,9 @@ const MyFormik = () => {
       <Link href="/">Kembali ke Formik</Link><br /><br />
       <button onClick={() => setIsDefault(!isDefault)}>Click Me to change default value</button><br /><br />
       <form onSubmit={form.handleSubmit}>
-        <label>Email : </label>
+        <label htmlFor="email">Email : </label>
         <input
+          id="email"
           name="email"
           placeholder=""
           type="email"
@@ -63,9 +64,10 @@ const MyFormik = () => {
           <p>{form.errors.email}</p>
         ) : null}
         <br /><br />
-        <label>Password : </label>
+        <label htmlFor="password">Password : </label>
         <input
           name="password"
+          id="password"
           type="password"
           onBlur={form.handleBlur}
           onChange={form.handleChange}
