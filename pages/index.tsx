@@ -23,6 +23,7 @@ const Formik = () => {
     <>
       <h1>Formik</h1>
       <Link href="/my-formik">Kembali ke My Formik</Link><br /><br />
+      <Link href="/render-props">Kembali ke My Formik Render Props</Link><br /><br />
       <form onSubmit={form.handleSubmit}>
         <label>Email : </label>
         <input

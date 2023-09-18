@@ -1,21 +1,32 @@
-import React, { ChangeEvent, FormEvent, FocusEvent } from "react"
+import React, { ChangeEvent, FormEvent, FocusEvent, Dispatch, SetStateAction } from "react"
 
 export type MyFormikErrorsType<DataType> = {
   [Key in keyof DataType]?: string
 }
 
-type MyFormikTouchedType<DataType> = {
+export type MyFormikTouchedType<DataType> = {
   [Key in keyof DataType]?: boolean
 }
 
-type MyFormikPropsType<DataType> = {
+export type MyFormikPropsType<DataType> = {
   initialValues: DataType
   onSubmit: (values: DataType) => void
   validate?: (values: DataType) => MyFormikErrorsType<DataType>
   enableReinitialize?: boolean
 }
 
-export const useMyFormik = <DataType,>({ initialValues, onSubmit, enableReinitialize, validate }: MyFormikPropsType<DataType>) => {
+export type MyFormikReturnType<DataType> = {
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void
+  resetForm: () => void
+  setValues: Dispatch<SetStateAction<DataType>>
+  handleBlur: (event: FocusEvent<HTMLInputElement, Element>) => void
+  touched: MyFormikTouchedType<DataType>
+  values: DataType
+  errors: MyFormikErrorsType<DataType>
+}
+
+export const useMyFormik = <DataType,>({ initialValues, onSubmit, enableReinitialize, validate }: MyFormikPropsType<DataType>): MyFormikReturnType<DataType> => {
   const [values, setValues] = React.useState<DataType>(initialValues)
   const [errors, setErrors] = React.useState<MyFormikErrorsType<DataType>>({})
   const [touched, setTouched] = React.useState<MyFormikTouchedType<DataType>>({})
