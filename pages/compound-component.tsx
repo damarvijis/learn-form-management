@@ -39,6 +39,7 @@ const validate = (values: ValuesType) => {
 
 const CompoundComponent = () => {
   const [isDefault, setIsDefault] = React.useState<boolean>(true)
+  const [value, setValue] = React.useState<string>("damar")
 
   return (
     <>
@@ -55,7 +56,7 @@ const CompoundComponent = () => {
       >
         <Form>
           <label htmlFor="email">Email : </label>
-          <Field name="email" type="email" />
+          <Field name="email" type="email" value={value} onChange={e => setValue(e.target.value)} />
           <ErrorMessage name="email" />
           <br /><br />
           <label htmlFor="password">Password : </label>

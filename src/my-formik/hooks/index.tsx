@@ -21,6 +21,13 @@ export type MyFormikReturnType<DataType> = {
   resetForm: () => void
   setValues: Dispatch<SetStateAction<DataType>>
   handleBlur: (event: FocusEvent<HTMLInputElement, Element>) => void
+  getFieldProps: <Name extends keyof DataType, >(name: Name) => {
+    name: Name
+    id: Name
+    onBlur: (event: FocusEvent<HTMLInputElement, Element>) => void
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void
+    value: DataType[Name]
+  }
   touched: MyFormikTouchedType<DataType>
   values: DataType
   errors: MyFormikErrorsType<DataType>
@@ -71,12 +78,22 @@ export const useMyFormik = <DataType,>({ initialValues, onSubmit, enableReinitia
 
   const resetForm = () => setValues(initialValues)
 
+  // Props Getter. function -> props component
+  const getFieldProps = <Name extends keyof DataType,>(name: Name) => ({
+    name,
+    id: name,
+    onBlur: handleBlur,
+    onChange: handleChange,
+    value: values[name]
+  })
+
   return {
     handleSubmit,
     handleChange,
     resetForm,
     setValues,
     handleBlur,
+    getFieldProps,
     touched,
     values,
     errors
